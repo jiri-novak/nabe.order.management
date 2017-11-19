@@ -5,6 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using nabe.order.management.DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
+using System;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.Logging;
 
 namespace nabe_order_management
 {
@@ -23,48 +27,62 @@ namespace nabe_order_management
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
-            services.AddEntityFrameworkNpgsql().AddDbContext<StoreDbContext>(options => options.UseNpgsql(Configuration["Data:StoreDbContext:ConnectionString"]));
+            //services.AddEntityFrameworkNpgsql().AddDbContext<NabeDbContext>(options => options.UseNpgsql(Configuration["Data:StoreDbContext:ConnectionString"]));
 
-            services.AddTransient<IStoreRepository, StoreRepository>();
+            services.AddTransient<NabeDbContext>();
+
+            services.AddDataProtection().SetDefaultKeyLifetime(TimeSpan.FromDays(14));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "nabe.order.management.api", Version = "v1" });
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.UseStaticFiles();
+            app.InitializeDb();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
                 });
+
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "nabe.order.management.api V1");
+                });
+
+                app.MapWhen(x => !x.Request.Path.Value.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase), builder =>
+                {
+                    builder.UseMvc(routes =>
+                    {
+                        routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Home", action = "Index" });
+                    });
+                });
             }
             else
             {
+                app.UseMvc(routes =>
+                {
+                    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                    routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Home", action = "Index" });
+                });
+
                 app.UseExceptionHandler("/Home/Error");
-            }
-
-            app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
-
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetService<StoreDbContext>().Database.Migrate();
             }
         }
     }

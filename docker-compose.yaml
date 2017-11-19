@@ -1,32 +1,53 @@
-version: '3'
+version: '3.1'
 
 services:
-  postgres:
+
+  db:
     image: postgres
     environment:
       POSTGRES_USER: nabe
       POSTGRES_PASSWORD: nabe
       PGDATA: /data/postgres
     volumes:
-       - /data/postgres:/data/postgres
+       - db_data:/data/postgres
     ports:
-      - "5432:5432"
+      - "8081:5432"
     networks:
-      - postgres
-    restart: unless-stopped
-  
-  pgadmin:
-    links:
-      - postgres:postgres
-    image: fenglc/pgadmin4
-    volumes:
-       - /data/pgadmin:/root/.pgadmin
-    ports:
-      - "5050:5050"
-    networks:
-      - postgres
+      - nabe
     restart: unless-stopped
 
+  # pgadmin:
+  #   image: fenglc/pgadmin4
+  #   links:
+  #     - db:postgres
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #      - /data/pgadmin:/root/.pgadmin
+  #   ports:
+  #     - "8082:5050"
+  #   networks:
+  #     - nabe
+  #   restart: unless-stopped
+
+  # web:
+  #   image: nabe-order-management
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     Data:StoreDbContext:ConnectionString: "User ID=nabe;Password=nabe;Server=db;Database=nabe;Integrated Security=true;Pooling=true;"
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - nabe
+  #   restart: unless-stopped
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+
+volumes:
+  db_data:
+
 networks:
-  postgres:
+  nabe:
     driver: bridge
