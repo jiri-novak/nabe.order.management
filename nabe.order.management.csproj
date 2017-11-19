@@ -26,6 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\modules\common\services\file.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\modules\common\components\" />
+    <Folder Include="ClientApp\app\modules\common\models\" />
     <Folder Include="DAL\Repositories\" />
   </ItemGroup>
 

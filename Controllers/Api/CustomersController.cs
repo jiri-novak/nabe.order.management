@@ -25,7 +25,7 @@ namespace nabe.order.management.Controllers.Api
         [HttpGet]
         public IEnumerable<Customer> GetCustomers()
         {
-            return _context.Customers;
+            return _context.Customers.Include(x => x.Company).Include(x => x.Company.Address);
         }
 
         // GET: api/Customers/5
@@ -37,7 +37,7 @@ namespace nabe.order.management.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var customer = await _context.Customers.SingleOrDefaultAsync(m => m.Id == id);
+            var customer = await _context.Customers.Include(x => x.Company).Include(x => x.Company.Address).SingleOrDefaultAsync(m => m.Id == id);
 
             if (customer == null)
             {
