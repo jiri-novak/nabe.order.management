@@ -48,6 +48,7 @@
     "json-loader": "0.5.4",
     "ng-select": "^1.0.0-rc.3",
     "ng2-breadcrumbs": "^0.1.281",
+    "ng2-font-awesome": "^1.0.31",
     "ngx-bootstrap": "^2.0.0-beta.8",
     "preboot": "4.5.2",
     "raw-loader": "0.5.1",

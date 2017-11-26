@@ -7,7 +7,7 @@ import { OrdersComponent } from './modules/main/components/orders/orders.compone
 
 const routes: Routes = [
     { path: '', redirectTo: 'orders', pathMatch: 'full' },
-    { path: 'orders', component: OrdersComponent, data: { breadcrumb: 'Orders' } },
+    { path: 'orders', component: OrdersComponent, data: { breadcrumb: 'Seznam zakázek' } },
     { path: '**', redirectTo: 'orders' }
 ];
 

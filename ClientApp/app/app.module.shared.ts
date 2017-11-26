@@ -9,6 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BreadcrumbsModule } from "ng2-breadcrumbs";
 import { SelectModule } from 'ng-select';
 import { ToasterModule } from 'angular2-toaster'
+import { BusyModule } from 'angular2-busy';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { FontAwesomeModule} from 'ng2-font-awesome';
 
 import { NabeMainModule } from './modules/main/main.module';
 
@@ -27,7 +31,9 @@ import { RoutesConfig } from './app.routes';
 
         ToasterModule,
         FlexLayoutModule,
-
+        BusyModule,
+        ModalModule.forRoot(),
+        TooltipModule.forRoot(),
         SelectModule,
         BreadcrumbsModule,
 

@@ -12,6 +12,7 @@ import { NabeCommonModule } from '../common/common.module';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CompaniesService } from './services/companies.service';
+import { SelectModule } from 'ng-select';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { CompaniesService } from './services/companies.service';
         FormsModule,
         RouterModule,
 
+        SelectModule,
         FlexLayoutModule,
 
         NabeCommonModule
