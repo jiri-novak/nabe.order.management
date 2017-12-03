@@ -23,12 +23,9 @@
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Compile Remove="ClientApp\app\modules\**" />
-    <Compile Remove="ClientApp\assets\themes\NewFolder\**" />
     <Content Remove="ClientApp\**" />
     <EmbeddedResource Remove="ClientApp\app\modules\**" />
-    <EmbeddedResource Remove="ClientApp\assets\themes\NewFolder\**" />
     <None Remove="ClientApp\app\modules\**" />
-    <None Remove="ClientApp\assets\themes\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

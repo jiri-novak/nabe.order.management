@@ -12,6 +12,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToasterModule } from 'angular2-toaster'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AlertModule } from 'ngx-bootstrap';
 
 // infrastructure app
 import { NabeMainModule } from './main'
@@ -36,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
         RoutesConfig,
         BrowserModule,
         BrowserAnimationsModule,
+        AlertModule.forRoot(),
 
         ToasterModule,
         FlexLayoutModule,

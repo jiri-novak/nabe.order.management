@@ -1,3 +1,8 @@
-@import '../css/bootstrap.min';
 @import "spinner";
 @import "variables";
+
+$icon-font-path: "/assets/fonts/";
+$fa-font-path: "/assets/fonts/";
+
+@import '~font-awesome/scss/font-awesome.scss';
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
