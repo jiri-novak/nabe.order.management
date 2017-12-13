@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import * as fromComponents from './components';
 
@@ -13,7 +14,8 @@ import { CompaniesService } from './services/companies.service';
 
 const declarations = [
     fromComponents.NavMenuComponent,
-    fromComponents.OrdersComponent
+    fromComponents.OrdersComponent,
+    fromComponents.CustomersComponent
     //fromComponents.OrdersDialogComponent
 ];
 
@@ -25,7 +27,8 @@ const declarations = [
         FormsModule,
         RouterModule,
 
-        FlexLayoutModule
+        FlexLayoutModule,
+        Ng2SmartTableModule,
     ],
     exports: declarations,
     providers: [

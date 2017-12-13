@@ -20,24 +20,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Compile Remove="ClientApp\app\modules\**" />
-    <Content Remove="ClientApp\**" />
-    <EmbeddedResource Remove="ClientApp\app\modules\**" />
-    <None Remove="ClientApp\app\modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ClientApp\assets\i18n\cs-cz.json" />
-    <Content Include="ClientApp\assets\i18n\fallback.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\app\main\components\customers\" />
-    <Folder Include="ClientApp\assets\images\" />
-  </ItemGroup>
-
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec Command="yarn" />
