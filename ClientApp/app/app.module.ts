@@ -13,7 +13,7 @@ import { ToasterModule } from 'angular2-toaster'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AlertModule } from 'ngx-bootstrap';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { TableModule } from 'ngx-easy-table';
 
 // infrastructure app
 import { NabeMainModule } from './main'
@@ -40,7 +40,7 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserAnimationsModule,
         AlertModule.forRoot(),
 
-        Ng2SmartTableModule,
+        TableModule,
         ToasterModule,
         FlexLayoutModule,
         TranslateModule.forRoot({
