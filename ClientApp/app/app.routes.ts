@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { NavMenuComponent } from './main/components/navmenu/navmenu.component';
-import { OrdersComponent } from './main/components/orders/orders.component';
 import { CustomersComponent } from './main/components/customers/customers.component';
+import { InvoicesComponent } from './main/components/index';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'orders', pathMatch: 'full' },
-    { path: 'orders', component: OrdersComponent },
+    { path: '', redirectTo: 'invoices', pathMatch: 'full' },
+    { path: 'invoices', component: InvoicesComponent },
     { path: 'customers', component: CustomersComponent },
-    { path: '**', redirectTo: 'orders' }
+    { path: '**', redirectTo: 'invoices' }
 ];
 
 export const RoutesConfig = RouterModule.forRoot(routes);

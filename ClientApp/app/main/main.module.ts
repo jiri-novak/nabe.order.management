@@ -6,17 +6,18 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-import * as fromComponents from './components';
-
 import { CompaniesService } from './services/companies.service';
 import { TableModule } from 'ngx-easy-table';
+import { BusyModule } from 'angular2-busy';
+
+import * as fromComponents from './components';
+import { CustomersService } from './services/customer.service';
 
 const declarations = [
     fromComponents.NavMenuComponent,
-    fromComponents.OrdersComponent,
+    fromComponents.InvoicesComponent,
+    //fromComponents.InvoicesDialogComponent,
     fromComponents.CustomersComponent
-    //fromComponents.OrdersDialogComponent
 ];
 
 @NgModule({
@@ -29,10 +30,12 @@ const declarations = [
 
         FlexLayoutModule,
         TableModule,
+        BusyModule
     ],
     exports: declarations,
     providers: [
-        CompaniesService
+        CompaniesService,
+        CustomersService
     ]
 })
 export class NabeMainModule {
