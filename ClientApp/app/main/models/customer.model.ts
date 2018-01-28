@@ -3,7 +3,9 @@ import { CompanyModel } from './company.model'
 export class CustomerModel {
     id: string;
     name: string;
-    company: CompanyModel
+    company: CompanyModel;
+    companyId: string;
+    isEdit: boolean;
 
     static fromServerResponse(response: any): CustomerModel {
         if (!response)
@@ -14,6 +16,7 @@ export class CustomerModel {
         model.name = response.name;
         model.id = response.id;
         model.company = CompanyModel.fromServerResponse(response.company);
+        model.companyId = model.company.id;
 
         return model;
     }

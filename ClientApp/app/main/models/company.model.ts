@@ -13,7 +13,7 @@ export class CompanyModel {
 
         var model = new CompanyModel();
 
-        model.id = response.id;
+        model.id = response.id.toString();
         model.name = response.name;
         model.address = AddressModel.fromServerResponse(response.address);
         model.dic = response.dic;

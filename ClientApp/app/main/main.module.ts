@@ -12,6 +12,7 @@ import { BusyModule } from 'angular2-busy';
 
 import * as fromComponents from './components';
 import { CustomersService } from './services/customer.service';
+import { SelectModule } from 'ng-select';
 
 const declarations = [
     fromComponents.NavMenuComponent,
@@ -30,7 +31,8 @@ const declarations = [
 
         FlexLayoutModule,
         TableModule,
-        BusyModule
+        BusyModule,
+        SelectModule
     ],
     exports: declarations,
     providers: [

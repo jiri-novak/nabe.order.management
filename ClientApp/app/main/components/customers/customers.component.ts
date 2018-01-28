@@ -5,6 +5,8 @@ import { Config } from 'ngx-easy-table/src/app/ngx-easy-table/model/config';
 import { CustomersService } from '../../services/customer.service';
 import { CustomerModel } from '../../models/customer.model';
 import { Observable } from 'rxjs/Observable';
+import { CompaniesService } from '../../services/companies.service';
+import { CompanyModel } from '../../models/company.model';
 
 @Component({
     selector: 'customers',
@@ -15,7 +17,8 @@ export class CustomersComponent implements OnInit {
 
     modal: boolean = false;
     busy: Subscription;
-    data: CustomerModel[];
+    customers: CustomerModel[];
+    companies: any[];
 
     configuration: Config = {
         searchEnabled: false,
@@ -23,12 +26,13 @@ export class CustomersComponent implements OnInit {
         orderEnabled: true,
         globalSearchEnabled: false,
         paginationEnabled: true,
+        paginationRangeEnabled: true,
         exportEnabled: false,
         clickEvent: false,
         selectRow: false,
         selectCol: false,
         selectCell: false,
-        rows: 50,
+        rows: 20,
         additionalActions: false,
         serverPagination: false,
         isLoading: false,
@@ -42,19 +46,28 @@ export class CustomersComponent implements OnInit {
         { key: '', title: '' }
     ];
 
-    constructor(private customersService: CustomersService) {
+    pagination = {
+        limit: 20,
+        offset: 0,
+        count: null,
+    };
+
+    constructor(private customersService: CustomersService, private companiesService: CompaniesService) {
     }
 
     ngOnInit(): void {
-        this.busy = this.customersService.getAll().subscribe(result => this.data = result);
+        this.busy = this.customersService.getAll().subscribe(result => this.customers = result);
+        this.companiesService.getAll().subscribe(result => this.companies = result.map(x => { return { value: x.id, label: x.name } }));
     }
 
-    // showModal() {
-    //     this.modal = true;
-    //     console.log('show');
-    // }
+    editRow(row: CustomerModel) {
+        row.isEdit = true;
+    }
 
-    // hideModal() {
-    //     this.modal = false;
-    // }
+    confirmRow(row: CustomerModel) {
+        row.isEdit = false;
+    }
+
+    deleteRow(row: CustomerModel) {
+    }
 }

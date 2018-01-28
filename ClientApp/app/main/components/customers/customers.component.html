@@ -1,16 +1,35 @@
 <div [ngBusy]="busy">
-    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination">
+    <ngx-table [pagination]="pagination" [configuration]="configuration" [data]="customers" [columns]="columns">
+
         <ng-template let-row>
-            <td>
-                <div class="font-small">{{row.name}}</div>
+
+            <td width="200">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.name}}</div>
+                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.name" class="form-control">
             </td>
-            <td>
-                <span class="font-small">{{row.company.name}}</span>
+
+            <td width="200">
+                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
+                <ng-select *ngIf="row.isEdit"
+                    [options]="companies" 
+                    [(ngModel)]="row.company.id"
+                    [allowClear]="false">
+                </ng-select>
             </td>
+
             <td>
-                <button class="btn btn-primary btn-sm" (click)=showModal()><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-                <button class="btn btn-danger btn-sm" (click)=showModal()><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="row.isEdit" class="btn btn-primary btn-sm" (click)=confirmRow(row)>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
             </td>
+
         </ng-template>
+
     </ngx-table>
 </div>
