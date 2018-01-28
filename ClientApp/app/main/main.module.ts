@@ -18,7 +18,8 @@ const declarations = [
     fromComponents.NavMenuComponent,
     fromComponents.InvoicesComponent,
     //fromComponents.InvoicesDialogComponent,
-    fromComponents.CustomersComponent
+    fromComponents.CustomersComponent,
+    fromComponents.CompaniesComponent
 ];
 
 @NgModule({

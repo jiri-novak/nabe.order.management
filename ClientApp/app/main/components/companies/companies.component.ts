@@ -2,24 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Config } from 'ngx-easy-table/src/app/ngx-easy-table/model/config';
-import { CustomersService } from '../../services/customer.service';
-import { CustomerModel } from '../../models/customer.model';
 import { Observable } from 'rxjs/Observable';
 import { CompaniesService } from '../../services/companies.service';
 import { CompanyModel } from '../../models/company.model';
 import { ComboboxItem } from '../../models/combobox.item';
+import { CustomerModel } from '../../models/customer.model';
 
 @Component({
-    selector: 'customers',
-    templateUrl: './customers.component.html',
-    styleUrls: ['./customers.component.scss']
+    selector: 'companies',
+    templateUrl: './companies.component.html',
+    styleUrls: ['./companies.component.scss']
 })
-export class CustomersComponent implements OnInit {
+export class CompaniesComponent implements OnInit {
 
     modal: boolean = false;
     busy: Subscription;
-    customers: CustomerModel[];
-    companies: ComboboxItem[];
+    companies: CompanyModel[];
 
     configuration: Config = {
         searchEnabled: false,
@@ -41,34 +39,39 @@ export class CustomersComponent implements OnInit {
         groupRows: false
     };
 
-    columns = [
-        { key: 'name', title: 'Jméno' },
-        { key: 'company', title: 'Společnost' },
-        { key: '', title: '' }
-    ];
-
     pagination = {
         limit: 20,
         offset: 0,
         count: null,
     };
 
-    constructor(private customersService: CustomersService, private companiesService: CompaniesService) {
+    columns = [
+        { key: 'name', title: 'Jméno' },
+        { key: 'address.street', title: 'Ulice' },
+        { key: 'address.streetNumber', title: 'Č.p.' },
+        { key: 'address.zipCode', title: 'PSČ' },
+        { key: 'address.municipality', title: 'Obec' },
+        { key: 'address.state', title: 'Stát' },
+        { key: 'dic', title: 'DIČ' },
+        { key: 'ico', title: 'IČO' },
+        { key: '', title: '' }
+    ];
+
+    constructor(private companiesService: CompaniesService) {
     }
 
     ngOnInit(): void {
-        this.busy = this.customersService.getAll().subscribe(result => this.customers = result);
-        this.companiesService.getAll().subscribe(result => this.companies = result.map(x => { return new ComboboxItem(x.id, x.name) }));
+        this.busy = this.companiesService.getAll().subscribe(result => this.companies = result);
     }
 
-    editRow(row: CustomerModel) {
+    editRow(row: CompanyModel) {
         row.isEdit = true;
     }
 
-    confirmRow(row: CustomerModel) {
+    confirmRow(row: CompanyModel) {
         row.isEdit = false;
     }
 
-    deleteRow(row: CustomerModel) {
+    deleteRow(row: CompanyModel) {
     }
 }
