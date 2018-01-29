@@ -10,9 +10,9 @@ import '../assets/sass/app.scss'
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    public readonly toasterconfig = new ToasterConfig({
-        positionClass: 'toast-bottom-left',
-    })
+    public toasterconfig: ToasterConfig = new ToasterConfig({
+        positionClass: 'toast-top-right'
+      });
 
     public constructor() {
 

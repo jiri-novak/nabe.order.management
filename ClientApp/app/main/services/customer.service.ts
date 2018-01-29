@@ -17,4 +17,16 @@ export class CustomersService {
         return this.httpClient.get<Array<CustomerModel>>(`${this.CUSTOMERS_URL}`)
             .map(response => CustomerModel.fromServerResponseArray(response));
     }
+
+    create(customer: CustomerModel) : Observable<CustomerModel> {
+        return this.httpClient.post<CustomerModel>(`${this.CUSTOMERS_URL}/${customer.id}`, customer);
+    }
+
+    update(customer: CustomerModel) : Observable<CustomerModel> {
+        return this.httpClient.put<CustomerModel>(`${this.CUSTOMERS_URL}/${customer.id}`, customer);
+    }
+
+    delete(customer: CustomerModel) : Observable<CustomerModel> {
+        return this.httpClient.delete<CustomerModel>(`${this.CUSTOMERS_URL}/${customer.id}`);
+    }
 }

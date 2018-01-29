@@ -13,8 +13,12 @@ export class CompaniesService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getAll(): Observable<Array<CompanyModel>> {
+    getAll() : Observable<Array<CompanyModel>> {
         return this.httpClient.get<Array<CompanyModel>>(`${this.COMPANIES_URL}`)
             .map(response => CompanyModel.fromServerResponseArray(response));
+    }
+
+    update(company: CompanyModel) : Observable<CompanyModel> {
+        return this.httpClient.put<CompanyModel>(`${this.COMPANIES_URL}/${company.id}`, company);
     }
 }

@@ -1,3 +1,9 @@
+<div class="text-right" style="padding-top: 15px">
+    <button type="button" class="btn btn-success btn-circle btn-lg">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>
+
 <div [ngBusy]="busy">
     <ngx-table [pagination]="pagination" [configuration]="configuration" [data]="customers" [columns]="columns">
 
@@ -10,10 +16,7 @@
 
             <td width="200">
                 <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
-                <ng-select *ngIf="row.isEdit"
-                    [options]="companies" 
-                    [(ngModel)]="row.company.id"
-                    [allowClear]="false">
+                <ng-select *ngIf="row.isEdit" [options]="companies" [(ngModel)]="row.company.id" [allowClear]="false">
                 </ng-select>
             </td>
 
@@ -21,10 +24,13 @@
                 <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </button>
-                <button *ngIf="row.isEdit" class="btn btn-primary btn-sm" (click)=confirmRow(row)>
+                <button *ngIf="row.isEdit" class="btn btn-success btn-sm" (click)=confirmRow(row)>
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
-                <button class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                <button *ngIf="!row.isEdit" class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="row.isEdit" class="btn btn-warning btn-sm" (click)=cancelEditRow(row)>
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </td>

@@ -57,7 +57,8 @@ namespace nabe_order_management
 
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
-                    HotModuleReplacement = true
+                    HotModuleReplacement = true,
+				    HotModuleReplacementEndpoint = "/__webpack_hmr"
                 });
 
                 app.UseSwagger();

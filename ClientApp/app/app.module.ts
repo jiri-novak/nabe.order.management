@@ -14,7 +14,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AlertModule } from 'ngx-bootstrap';
 import { TableModule } from 'ngx-easy-table';
-import { SelectModule } from 'ng2-select';
+import { SelectModule } from 'ng-select';
 
 // infrastructure app
 import { NabeMainModule } from './main'
