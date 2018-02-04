@@ -10,6 +10,7 @@ import { CompaniesService } from './services/companies.service';
 import { TableModule } from 'ngx-easy-table';
 import { BusyModule } from 'angular2-busy';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import * as fromComponents from './components';
 import * as fromServices from './services';
@@ -42,7 +43,8 @@ const providers = [
         FlexLayoutModule,
         TableModule,
         BusyModule,
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        CollapseModule.forRoot()
     ],
     exports: declarations,
     providers: providers,

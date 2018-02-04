@@ -1,27 +1,15 @@
-<div class="text-left" style="padding-top: 15px">
-    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
-        <i class="glyphicon glyphicon-plus"></i>
-    </button>
-</div>
+<h3>Dodavatelé:</h3>
+
+<button type="button" class="btn btn-success btn-circle" (click)="openModal()">
+    <i class="glyphicon glyphicon-plus"></i>
+</button>
 
 <div [ngBusy]="busy">
     <ngx-table [pagination]="pagination" [configuration]="configuration" [data]="customers" [columns]="columns">
 
         <ng-template let-row>
 
-            <td width="200">
-                <div *ngIf="!row.isEdit" class="font-small">{{row.name}}</div>
-                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.name" class="form-control">
-            </td>
-
-            <td width="200">
-                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
-                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
-                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
-                </select>
-            </td>
-
-            <td>
+            <td width="100">
                 <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </button>
@@ -34,6 +22,18 @@
                 <button *ngIf="row.isEdit" class="btn btn-warning btn-sm" (click)=cancelEditRow(row)>
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
+            </td>
+
+            <td width="200">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.name}}</div>
+                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.name" class="form-control">
+            </td>
+
+            <td>
+                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
+                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
+                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
+                </select>
             </td>
 
         </ng-template>

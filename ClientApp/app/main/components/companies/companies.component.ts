@@ -40,7 +40,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
         additionalActions: false,
         serverPagination: false,
         isLoading: false,
-        detailsTemplate: true,
+        detailsTemplate: false,
         groupRows: false
     };
 
@@ -51,6 +51,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
     };
 
     columns = [
+        { key: '', title: '' },
         { key: 'name', title: 'Jméno' },
         { key: 'address.street', title: 'Ulice' },
         { key: 'address.streetNumber', title: 'Č.p.' },
@@ -58,8 +59,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
         { key: 'address.municipality', title: 'Obec' },
         { key: 'address.state', title: 'Stát' },
         { key: 'dic', title: 'DIČ' },
-        { key: 'ico', title: 'IČO' },
-        { key: '', title: '' }
+        { key: 'ico', title: 'IČO' }
     ];
 
     constructor(

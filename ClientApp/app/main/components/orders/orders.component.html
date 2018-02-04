@@ -1,31 +1,19 @@
-<div class="text-left" style="padding-top: 15px">
-    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
-        <i class="glyphicon glyphicon-plus"></i>
-    </button>
-</div>
+<h3>Zakázky:</h3>
+
+<button type="button" class="btn btn-success btn-circle" (click)="openModal()">
+    <i class="glyphicon glyphicon-plus"></i>
+</button>
 
 <div [ngBusy]="busy">
-    <ngx-table [configuration]="configuration" [data]="orders" [columns]="columns" [pagination]="pagination">
+    <ngx-table [configuration]="configuration" [data]="orders" [columns]="columns" [pagination]="pagination" [detailsTemplate]="detailsTemplateRef">
 
         <ng-template let-row>
 
-            <td width="100">
-                <div *ngIf="!row.isEdit" class="font-small">{{row.date | date: 'dd.MM.yyyy'}}</div>
-            </td>
-
-            <td width="100">
-                <div *ngIf="!row.isEdit" class="font-small">{{row.code}}</div>
-                <input *ngIf="row.isEdit" type="number" [(ngModel)]="row.code" class="form-control">
-            </td>
-
-            <!-- <td width="200">
-                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
-                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
-                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
-                </select>
-            </td> -->
-
-            <td>
+            <td width="130">
+                <button class="btn btn-default btn-sm" (click)="collapseExpandRow(row)">
+                    <span *ngIf="!row.isExpanded" class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+                    <span *ngIf="row.isExpanded" class="glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+                </button>
                 <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </button>
@@ -40,7 +28,44 @@
                 </button>
             </td>
 
+            <td width="100">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.date | date: 'dd.MM.yyyy'}}</div>
+            </td>
+
+            <td width="130">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.code}}</div>
+            </td>
+
+            <td width="100">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.customer.name}}</div>
+            </td>
+
+            <td width="200">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.description}}</div>
+            </td>
+
+            <td width="130">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.deliveryDate | date: 'dd.MM.yyyy'}}</div>
+            </td>
+
+            <td width="100">
+            </td>
+
+            <td width="200">
+            </td>
+
+            <td>
+            </td>
+
         </ng-template>
 
     </ngx-table>
 </div>
+
+<!-- <td width="200">
+                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
+                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
+                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
+                </select>
+            </td>
+        -->

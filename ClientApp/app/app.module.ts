@@ -19,6 +19,7 @@ import { TableModule } from 'ngx-easy-table';
 import { NabeMainModule } from './main'
 import { AppComponent } from './app.component';
 import { RoutesConfig } from './app.routes';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 export function getBaseUrl() {
     return document.getElementsByTagName('base')[0].href;
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserModule,
         BrowserAnimationsModule,
         ModalModule.forRoot(),
+        CollapseModule.forRoot(),
         TableModule,
         ToasterModule,
         FlexLayoutModule,

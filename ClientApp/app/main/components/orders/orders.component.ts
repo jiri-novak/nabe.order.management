@@ -11,6 +11,7 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToasterService } from 'angular2-toaster';
 import { DialogService } from '../../services/dialog.service';
+import { CustomersService } from '../../services/customer.service';
 
 @Component({
     selector: 'orders',
@@ -39,13 +40,20 @@ export class OrdersComponent implements OnInit, OnDestroy {
         additionalActions: false,
         serverPagination: false,
         isLoading: false,
-        detailsTemplate: true,
+        detailsTemplate: false,
         groupRows: false
     };
 
     columns = [
+        { key: '', title: '' },
         { key: 'date', title: 'Datum' },
-        { key: 'code', title: 'Kód' }
+        { key: 'code', title: 'Objednávka č.' },
+        { key: 'customer.name', title: 'Jméno' },
+        { key: 'description', title: 'Popis' },
+        { key: 'deliveryDate', title: 'Termín dodání' },
+        { key: '', title: 'Faktura' },
+        { key: '', title: 'Faktura - odeslání' },
+        { key: '', title: 'Dodací listy' }
     ];
 
     pagination = {
@@ -56,6 +64,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     constructor(
         private ordersService: OrdersService,
+        private customersService: CustomersService,
         private toasterService: ToasterService,
         private dialogService: DialogService,
         private modalService: BsModalService) {
@@ -68,8 +77,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy() : void {
+    ngOnDestroy(): void {
         this.subscriptions.forEach(sub => sub.unsubscribe());
         this.busy.unsubscribe();
     }
+
+    collapseExpandRow(row: OrderModel): void {
+        row.isExpanded = !row.isExpanded;
+    }
+
+    isCollapsed: boolean = false;
 }

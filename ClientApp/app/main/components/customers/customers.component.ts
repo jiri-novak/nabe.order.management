@@ -44,14 +44,14 @@ export class CustomersComponent implements OnInit, OnDestroy {
         additionalActions: false,
         serverPagination: false,
         isLoading: false,
-        detailsTemplate: true,
+        detailsTemplate: false,
         groupRows: false
     };
 
     columns = [
+        { key: '', title: '' },
         { key: 'name', title: 'Jméno' },
-        { key: 'company', title: 'Společnost' },
-        { key: '', title: '' }
+        { key: 'company', title: 'Společnost' }
     ];
 
     pagination = {

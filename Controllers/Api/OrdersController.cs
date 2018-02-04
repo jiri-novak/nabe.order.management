@@ -23,7 +23,7 @@ namespace nabe.order.management.Controllers.Api
         [HttpGet]
         public IEnumerable<Order> GetOrder()
         {
-            return _context.Orders;
+            return _context.Orders.Include(x => x.Customer).Include(x => x.ExternalDeliveries);
         }
 
         // GET: api/Orders/5
