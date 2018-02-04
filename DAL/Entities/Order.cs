@@ -17,7 +17,7 @@ namespace nabe.order.management.DAL.Entities
         public Invoice Invoice { get; set; }
 
         public LaserProgram LaserProgram { get; set; }
-        public bool? SentForManufacturing { get; set; }
+        public bool SentForManufacturing { get; set; }
 
         public ICollection<ExternalDelivery> ExternalDeliveries { get; set; }
     }

@@ -2,6 +2,6 @@
 {
     public class BillOfDelivery : Entity
     {
-        public long Code { get; set; }
+        public string Code { get; set; }
     }
 }

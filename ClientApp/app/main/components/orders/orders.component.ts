@@ -73,6 +73,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.busy = this.ordersService.getAll().subscribe(result => {
             this.orders = result;
+            console.log(result[0]);
         });
     }
 

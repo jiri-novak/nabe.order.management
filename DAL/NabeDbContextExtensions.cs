@@ -90,8 +90,8 @@ namespace nabe.order.management.DAL
                             ExpeditionDate = DateTime.Now.Add(TimeSpan.FromDays(26)),
                             BillsOfDelivery = new List<BillOfDelivery>()
                                 {
-                                    new BillOfDelivery { Code = 20170810 },
-                                    new BillOfDelivery { Code = 20171001 }
+                                    new BillOfDelivery { Code = "20170810" },
+                                    new BillOfDelivery { Code = "20171001" }
                                 },
                         },
                         LaserProgram = Enums.LaserProgram.Partly,
@@ -130,6 +130,7 @@ namespace nabe.order.management.DAL
             {
                 var ctx = serviceScope.ServiceProvider.GetService<NabeDbContext>();
 
+                ctx.Database.EnsureDeleted();
                 ctx.Database.EnsureCreated();
 
                 ctx.Database.Migrate();
