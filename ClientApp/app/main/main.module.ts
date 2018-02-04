@@ -12,8 +12,7 @@ import { BusyModule } from 'angular2-busy';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import * as fromComponents from './components';
-import { CustomersService } from './services/customer.service';
-import { DialogService } from './services/dialog.service';
+import * as fromServices from './services';
 
 const declarations = [
     fromComponents.NavMenuComponent,
@@ -22,6 +21,13 @@ const declarations = [
     fromComponents.CustomersModalComponent,
     fromComponents.CompaniesComponent,
     fromComponents.CompaniesModalComponent
+];
+
+const providers = [
+    fromServices.CompaniesService,
+    fromServices.CustomersService,
+    fromServices.InvoicesService,
+    fromServices.DialogService
 ];
 
 @NgModule({
@@ -39,11 +45,7 @@ const declarations = [
         ModalModule.forRoot()
     ],
     exports: declarations,
-    providers: [
-        CompaniesService,
-        CustomersService,
-        DialogService
-    ],
+    providers: providers,
     entryComponents: [
         fromComponents.CustomersModalComponent,
         fromComponents.CompaniesModalComponent

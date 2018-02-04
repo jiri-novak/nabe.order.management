@@ -1,35 +1,42 @@
-<ngx-table [configuration]="configuration"
-           [data]="data"
-           [columns]="columns"
-           [pagination]="pagination"
-           [detailsTemplate]="detailsTemplateRef">
+<div class="text-left" style="padding-top: 15px">
+    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>
 
-    <ng-template let-row>
-        <td>
-            <div class="font-small">
-                Company: {{row.company}}
-            </div>
-        </td>
-        <td>
-            <div class="circle" [style.color]="row.isActive? 'red' : 'green'"></div>
-        </td>
-        <td>
-            <span class="font-small">{{row.age}}</span>
-        </td>
-        <td>
-            <span class="font-small">{{row.name}}</span>
-        </td>
-        <td>
-            <button class="btn btn-primary btn-sm" (click)=showModal()>Edituj</button>
-            <button class="btn btn-primary btn-sm" (click)=showModal()>Zobraz detaily</button>
-        </td>
-    </ng-template>
-    
-</ngx-table>
+<div [ngBusy]="busy">
+    <ngx-table [configuration]="configuration" [data]="invoices" [columns]="columns" [pagination]="pagination">
 
-<!--<ng-template #detailsTemplate let-row>
-    <div>
-        <h2 class="color-green">{{row.phone }}</h2>
-        {{row.name }} - {{row.age}}
-    </div>
-</ng-template>-->
+        <ng-template let-row>
+
+            <td width="200">
+                <div *ngIf="!row.isEdit" class="font-small">{{row.code}}</div>
+                <input *ngIf="row.isEdit" type="number" [(ngModel)]="row.code" class="form-control">
+            </td>
+
+            <!-- <td width="200">
+                <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
+                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
+                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
+                </select>
+            </td> -->
+
+            <td>
+                <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="row.isEdit" class="btn btn-success btn-sm" (click)=confirmRow(row)>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="!row.isEdit" class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="row.isEdit" class="btn btn-warning btn-sm" (click)=cancelEditRow(row)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </td>
+
+        </ng-template>
+
+    </ngx-table>
+</div>

@@ -25,7 +25,12 @@ namespace nabe.order.management.Controllers.Api
         [HttpGet]
         public IEnumerable<Invoice> GetInvoices()
         {
-            return _context.Invoices;
+            yield return new Invoice()
+            {
+                Id = 1,
+                Code = 611
+            };
+            //return _context.Invoices;
         }
 
         // GET: api/Invoices/5
