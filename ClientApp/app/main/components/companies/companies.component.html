@@ -1,3 +1,9 @@
+<div class="text-left" style="padding-top: 15px">
+    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>
+
 <div [ngBusy]="busy">
     <ngx-table [pagination]="pagination" [configuration]="configuration" [data]="companies" [columns]="columns">
 
@@ -15,12 +21,12 @@
 
             <td width="100">
                 <div *ngIf="!row.isEdit" class="font-small">{{row.address.streetNumber}}</div>
-                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.address.streetNumber" class="form-control" type="number">
+                <input *ngIf="row.isEdit" type="number" [(ngModel)]="row.address.streetNumber" class="form-control">
             </td>
 
             <td width="100">
                 <div *ngIf="!row.isEdit" class="font-small">{{row.address.zipCode}}</div>
-                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.address.zipCode" class="form-control" type="number">
+                <input *ngIf="row.isEdit" type="number" [(ngModel)]="row.address.zipCode" class="form-control">
             </td>
 
             <td width="200">
@@ -40,17 +46,20 @@
 
             <td width="150">
                 <div *ngIf="!row.isEdit" class="font-small">{{row.ico}}</div>
-                <input *ngIf="row.isEdit" type="text" [(ngModel)]="row.ico" class="form-control" type="number">
+                <input *ngIf="row.isEdit" type="number" [(ngModel)]="row.ico" class="form-control">
             </td>
 
             <td>
                 <button *ngIf="!row.isEdit" class="btn btn-primary btn-sm" (click)=editRow(row)>
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                 </button>
-                <button *ngIf="row.isEdit" class="btn btn-primary btn-sm" (click)=confirmRow(row)>
+                <button *ngIf="row.isEdit" class="btn btn-success btn-sm" (click)=confirmRow(row)>
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </button>
-                <button class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                <button *ngIf="!row.isEdit" class="btn btn-danger btn-sm" (click)=deleteRow(row)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="row.isEdit" class="btn btn-warning btn-sm" (click)=cancelEditRow(row)>
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </button>
             </td>

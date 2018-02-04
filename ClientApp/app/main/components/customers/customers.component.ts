@@ -21,12 +21,11 @@ import { CustomersModalComponent } from '../customers-modal/customers.modal.comp
     styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit, OnDestroy {
-    modal: boolean = false;
-    busy: Subscription;
-    customers: CustomerModel[] = [];
+    customers: CustomerModel[];
     companies: CompanyModel[];
     bsModalRef: BsModalRef;
     subscriptions: Array<Subscription> = new Array<Subscription>();
+    busy: Subscription;
     backupRows: Object;
 
     configuration: Config = {
@@ -75,7 +74,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
             this.customers = result
         );
 
-        this.subscriptions.push(this.companiesService.getAll().subscribe(result =>
+        this.subscriptions.push(this.companiesService.getAll().subscribe(result => 
             this.companies = result
         ));
 
@@ -88,6 +87,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.subscriptions.forEach(sub => sub.unsubscribe());
+        this.busy.unsubscribe();
     }
 
     openModal() {
@@ -112,14 +112,14 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
         this.customersService.create(row).subscribe(
             result => {
-                let toast: Toast = { type: 'success', title: 'Zákazník úspěšně vytvořen' };
+                let toast: Toast = { type: 'success', title: 'Dodavatel úspěšně vytvořen' };
                 this.toasterService.pop(toast);
 
                 this.customers.push(result);
                 this.customers = this.sortByName(this.customers);
             },
             error => {
-                let toast: Toast = { type: 'error', title: `Chyba při vytváření zázkazníka: ${error.message}` };
+                let toast: Toast = { type: 'error', title: `Chyba při vytváření dodavatele: ${error.message}` };
                 this.toasterService.pop(toast);
             }
         );
@@ -131,27 +131,27 @@ export class CustomersComponent implements OnInit, OnDestroy {
 
         this.customersService.update(row).subscribe(
             result => {
-                let toast: Toast = { type: 'success', title: 'Zákazník úspěšně editován' };
+                let toast: Toast = { type: 'success', title: 'Dodavatel úspěšně editován' };
                 this.toasterService.pop(toast);
             },
             error => {
-                let toast: Toast = { type: 'error', title: `Chyba při editaci zázkazníka: ${error.message}` };
+                let toast: Toast = { type: 'error', title: `Chyba při editaci dodavatele: ${error.message}` };
                 this.toasterService.pop(toast);
             }
         );
     }
 
     deleteRow(row: CustomerModel) {
-        this.dialogService.confirm(`Opravdu smazat?`, `Opravdu si přejete smazat zákazníka ${row.name}?`)
+        this.dialogService.confirm(`Opravdu smazat?`, `Opravdu si přejete smazat dodavatele ${row.name}?`)
             .then(() => {
                 this.customersService.delete(row).subscribe(
                     result => {
-                        let toast: Toast = { type: 'success', title: 'Zákazník úspěšně odstraněn' };
+                        let toast: Toast = { type: 'success', title: 'Dodavatel úspěšně odstraněn' };
                         this.customers = this.customers.filter(r => r.id != row.id);
                         this.toasterService.pop(toast);
                     },
                     error => {
-                        let toast: Toast = { type: 'error', title: `Chyba při odstraňování zázkazníka: ${error.message}` };
+                        let toast: Toast = { type: 'error', title: `Chyba při odstraňování dodavatele: ${error.message}` };
                         this.toasterService.pop(toast);
                     }
                 );

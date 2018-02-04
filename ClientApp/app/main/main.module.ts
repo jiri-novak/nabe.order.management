@@ -20,7 +20,8 @@ const declarations = [
     fromComponents.InvoicesComponent,
     fromComponents.CustomersComponent,
     fromComponents.CustomersModalComponent,
-    fromComponents.CompaniesComponent
+    fromComponents.CompaniesComponent,
+    fromComponents.CompaniesModalComponent
 ];
 
 @NgModule({
@@ -44,7 +45,8 @@ const declarations = [
         DialogService
     ],
     entryComponents: [
-        fromComponents.CustomersModalComponent
+        fromComponents.CustomersModalComponent,
+        fromComponents.CompaniesModalComponent
     ]
 })
 export class NabeMainModule {

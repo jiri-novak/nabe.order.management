@@ -25,7 +25,7 @@ namespace nabe.order.management.Controllers.Api
         [HttpGet]
         public IEnumerable<Company> GetCompanies()
         {
-            return _context.Companies;
+            return _context.Companies.OrderBy(x => x.Name.ToLowerInvariant());
         }
 
         // GET: api/Companies/5

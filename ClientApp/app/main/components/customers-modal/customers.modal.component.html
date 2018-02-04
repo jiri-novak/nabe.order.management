@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Přidat nového zákazníka</h4>
+    <h4 class="modal-title pull-left">Přidat nového dodavatele</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
     <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
 
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Jméno</label>
             <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
 
             <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label for="company">Společnost</label>
-            <select class="selectpicker form-control" [(ngModel)]="model.company" id="company" required name="company" #company="ngModel" [compareWith]="compareCompaniesById">
+            <select class="form-control" [(ngModel)]="model.company" id="company" required name="company" #company="ngModel" [compareWith]="compareCompaniesById">
                 <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
             </select>
 

@@ -21,4 +21,12 @@ export class CompaniesService {
     update(company: CompanyModel) : Observable<CompanyModel> {
         return this.httpClient.put<CompanyModel>(`${this.COMPANIES_URL}/${company.id}`, company);
     }
+
+    create(customer: CompanyModel) : Observable<CompanyModel> {
+        return this.httpClient.post<CompanyModel>(`${this.COMPANIES_URL}`, customer);
+    }
+
+    delete(customer: CompanyModel) : Observable<CompanyModel> {
+        return this.httpClient.delete<CompanyModel>(`${this.COMPANIES_URL}/${customer.id}`);
+    }
 }
