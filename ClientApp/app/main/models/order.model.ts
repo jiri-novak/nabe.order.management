@@ -1,6 +1,12 @@
+import { CustomerModel } from "./customer.model";
+
 export class OrderModel {
     id: string;
     code: number;
+    date: Date;
+    customer: CustomerModel;
+    description: string;
+    deliveryDate: Date;
 
     isEdit: boolean;
 
@@ -12,6 +18,10 @@ export class OrderModel {
 
         model.id = response.id;
         model.code = response.code;
+        model.date = response.date;
+        model.customer = CustomerModel.fromServerResponse(response.customer);
+        model.description = response.description;
+        model.deliveryDate = response.deliveryDate;
 
         return model;
     }
@@ -29,7 +39,11 @@ export class OrderModel {
     toJson() {
         return {
             id: this.id,
-            code: this.code
+            code: this.code,
+            date: this.date,
+            customer: this.customer.toJson(),
+            description: this.description,
+            deliveryDate: this.deliveryDate
         }
     }
 }

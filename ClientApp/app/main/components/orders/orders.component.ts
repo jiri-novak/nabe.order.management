@@ -44,6 +44,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     };
 
     columns = [
+        { key: 'date', title: 'Datum' },
         { key: 'code', title: 'Kód' }
     ];
 
