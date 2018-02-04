@@ -16,7 +16,7 @@ import * as fromServices from './services';
 
 const declarations = [
     fromComponents.NavMenuComponent,
-    fromComponents.InvoicesComponent,
+    fromComponents.OrdersComponent,
     fromComponents.CustomersComponent,
     fromComponents.CustomersModalComponent,
     fromComponents.CompaniesComponent,
@@ -26,7 +26,7 @@ const declarations = [
 const providers = [
     fromServices.CompaniesService,
     fromServices.CustomersService,
-    fromServices.InvoicesService,
+    fromServices.OrdersService,
     fromServices.DialogService
 ];
 

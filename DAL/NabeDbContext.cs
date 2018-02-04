@@ -22,17 +22,29 @@ namespace nabe.order.management.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Company>(x => {
-                x.OwnsOne(c => c.Address);
-            });
+            modelBuilder.Entity<Company>()
+                .ToTable("companies")
+                .OwnsOne(c => c.Address);
 
-            modelBuilder.Entity<Customer>(x => {
-                x.HasOne(c => c.Company);
-            });
+            modelBuilder.Entity<Customer>()
+                .ToTable("customers");
+
+            modelBuilder.Entity<ExternalDelivery>()
+                .ToTable("external_deliveries");
+
+            modelBuilder.Entity<ExternalDeliveryCustomer>()
+                .ToTable("external_deliveries_customers")
+                .HasKey(t => new { t.ExternalDeliveryId, t.CustomerId });
+
+            modelBuilder.Entity<Invoice>()
+                .ToTable("invoices");
+
+            modelBuilder.Entity<Order>()
+                .ToTable("orders");
         }
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

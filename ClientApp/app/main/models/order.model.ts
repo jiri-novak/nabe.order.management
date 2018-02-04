@@ -1,14 +1,14 @@
-export class InvoiceModel {
+export class OrderModel {
     id: string;
     code: number;
 
     isEdit: boolean;
 
-    static fromServerResponse(response: any): InvoiceModel {
+    static fromServerResponse(response: any): OrderModel {
         if (!response)
             return null;
 
-        var model = new InvoiceModel();
+        var model = new OrderModel();
 
         model.id = response.id;
         model.code = response.code;
@@ -16,11 +16,11 @@ export class InvoiceModel {
         return model;
     }
 
-    static fromServerResponseArray(response: any): Array<InvoiceModel> {        
-        var models = new Array<InvoiceModel>();
+    static fromServerResponseArray(response: any): Array<OrderModel> {        
+        var models = new Array<OrderModel>();
         
         if (response) {
-            models = response.map((value) => InvoiceModel.fromServerResponse(value));
+            models = response.map((value) => OrderModel.fromServerResponse(value));
         }
 
         return models;

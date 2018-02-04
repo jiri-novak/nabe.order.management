@@ -4,17 +4,17 @@ import { AppComponent } from './app.component';
 
 import { 
     NavMenuComponent, 
-    InvoicesComponent, 
+    OrdersComponent, 
     CustomersComponent,
     CompaniesComponent
 } from './main/components/index';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'invoices', pathMatch: 'full' },
-    { path: 'invoices', component: InvoicesComponent },
+    { path: '', redirectTo: 'orders', pathMatch: 'full' },
+    { path: 'orders', component: OrdersComponent },
     { path: 'customers', component: CustomersComponent },
     { path: 'companies', component: CompaniesComponent },
-    { path: '**', redirectTo: 'invoices' }
+    { path: '**', redirectTo: 'orders' }
 ];
 
 export const RoutesConfig = RouterModule.forRoot(routes);

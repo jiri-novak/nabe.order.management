@@ -7,7 +7,7 @@ namespace nabe.order.management.DAL.Entities
     {
         public string Description { get; set; }
         public string Comments { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<ExternalDeliveryCustomer> Customers { get; set; }
         public State State { get; set; }
     }
 }

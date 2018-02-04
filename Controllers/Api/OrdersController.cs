@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using nabe.order.management.DAL;
@@ -11,62 +9,57 @@ using nabe.order.management.DAL.Entities;
 namespace nabe.order.management.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/Invoices")]
-    public class InvoicesController : Controller
+    [Route("api/Orders")]
+    public class OrdersController : Controller
     {
         private readonly NabeDbContext _context;
 
-        public InvoicesController(NabeDbContext context)
+        public OrdersController(NabeDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Invoices
+        // GET: api/Orders
         [HttpGet]
-        public IEnumerable<Invoice> GetInvoices()
+        public IEnumerable<Order> GetOrder()
         {
-            yield return new Invoice()
-            {
-                Id = 1,
-                Code = 611
-            };
-            //return _context.Invoices;
+            return _context.Orders;
         }
 
-        // GET: api/Invoices/5
+        // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetInvoice([FromRoute] int id)
+        public async Task<IActionResult> GetOrder([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var invoice = await _context.Invoices.SingleOrDefaultAsync(m => m.Id == id);
+            var order = await _context.Orders.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (invoice == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return Ok(invoice);
+            return Ok(order);
         }
 
-        // PUT: api/Invoices/5
+        // PUT: api/Orders/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutInvoice([FromRoute] int id, [FromBody] Invoice invoice)
+        public async Task<IActionResult> PutOrder([FromRoute] int id, [FromBody] Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != invoice.Id)
+            if (id != order.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(invoice).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -74,7 +67,7 @@ namespace nabe.order.management.Controllers.Api
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InvoiceExists(id))
+                if (!OrderExists(id))
                 {
                     return NotFound();
                 }
@@ -87,45 +80,45 @@ namespace nabe.order.management.Controllers.Api
             return NoContent();
         }
 
-        // POST: api/Invoices
+        // POST: api/Orders
         [HttpPost]
-        public async Task<IActionResult> PostInvoice([FromBody] Invoice invoice)
+        public async Task<IActionResult> PostOrder([FromBody] Order order)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Invoices.Add(invoice);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetInvoice", new { id = invoice.Id }, invoice);
+            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
 
-        // DELETE: api/Invoices/5
+        // DELETE: api/Orders/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInvoice([FromRoute] int id)
+        public async Task<IActionResult> DeleteOrder([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var invoice = await _context.Invoices.SingleOrDefaultAsync(m => m.Id == id);
-            if (invoice == null)
+            var order = await _context.Orders.SingleOrDefaultAsync(m => m.Id == id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Invoices.Remove(invoice);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
-            return Ok(invoice);
+            return Ok(order);
         }
 
-        private bool InvoiceExists(int id)
+        private bool OrderExists(int id)
         {
-            return _context.Invoices.Any(e => e.Id == id);
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

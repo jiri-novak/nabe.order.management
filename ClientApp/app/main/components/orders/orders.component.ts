@@ -5,22 +5,20 @@ import { CompaniesService } from '../../services/companies.service';
 import { CompanyModel } from "../../models/company.model";
 
 import { Config } from 'ngx-easy-table/src/app/ngx-easy-table/model/config';
-import { InvoicesService } from '../../services/invoices.service';
-import { InvoiceModel } from '../../models/invoice.model';
+import { OrdersService } from '../../services/orders.service';
+import { OrderModel } from '../../models/order.model';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToasterService } from 'angular2-toaster';
 import { DialogService } from '../../services/dialog.service';
 
 @Component({
-    selector: 'invoices',
-    templateUrl: './invoices.component.html',
-    styleUrls: ['./invoices.component.scss']
+    selector: 'orders',
+    templateUrl: './orders.component.html',
+    styleUrls: ['./orders.component.scss']
 })
-export class InvoicesComponent implements OnInit, OnDestroy {
-    @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
-
-    invoices: Array<InvoiceModel> = new Array<InvoiceModel>();
+export class OrdersComponent implements OnInit, OnDestroy {
+    orders: Array<OrderModel> = new Array<OrderModel>();
     bsModalRef: BsModalRef;
     subscriptions: Array<Subscription> = new Array<Subscription>();
     busy: Subscription;
@@ -56,16 +54,16 @@ export class InvoicesComponent implements OnInit, OnDestroy {
     };
 
     constructor(
-        private invoicesService: InvoicesService,
+        private ordersService: OrdersService,
         private toasterService: ToasterService,
         private dialogService: DialogService,
         private modalService: BsModalService) {
     }
 
     ngOnInit(): void {
-        this.busy = this.invoicesService.getAll().subscribe(result => {
+        this.busy = this.ordersService.getAll().subscribe(result => {
             console.log(result);
-            this.invoices = result;
+            this.orders = result;
         });
     }
 

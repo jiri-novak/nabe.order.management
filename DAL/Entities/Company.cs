@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace nabe.order.management.DAL.Entities
+﻿namespace nabe.order.management.DAL.Entities
 {
     public class Company : Entity
     {
