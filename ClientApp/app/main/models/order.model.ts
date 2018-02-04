@@ -9,7 +9,6 @@ export class OrderModel {
     deliveryDate: Date;
 
     isEdit: boolean;
-    isExpanded: boolean;
 
     static fromServerResponse(response: any): OrderModel {
         if (!response)

@@ -23,6 +23,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     bsModalRef: BsModalRef;
     subscriptions: Array<Subscription> = new Array<Subscription>();
     busy: Subscription;
+    selectedRow: OrderModel;
 
     configuration: Config = {
         searchEnabled: false,
@@ -32,7 +33,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         paginationEnabled: true,
         paginationRangeEnabled: true,
         exportEnabled: false,
-        clickEvent: false,
+        clickEvent: true,
         selectRow: false,
         selectCol: false,
         selectCell: false,
@@ -45,7 +46,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     };
 
     columns = [
-        { key: '', title: '' },
         { key: 'date', title: 'Datum' },
         { key: 'code', title: 'Objednávka č.' },
         { key: 'customer.name', title: 'Jméno' },
@@ -72,7 +72,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.busy = this.ordersService.getAll().subscribe(result => {
-            console.log(result);
             this.orders = result;
         });
     }
@@ -82,9 +81,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.busy.unsubscribe();
     }
 
-    collapseExpandRow(row: OrderModel): void {
-        row.isExpanded = !row.isExpanded;
+    eventEmitted($event) {
+        if ($event.event == "onClick") {
+            let row : OrderModel = $event.value.row;
+            this.selectedRow = row;
+        }
     }
-
-    isCollapsed: boolean = false;
 }
