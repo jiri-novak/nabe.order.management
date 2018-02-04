@@ -19,7 +19,7 @@ export class CustomersService {
     }
 
     create(customer: CustomerModel) : Observable<CustomerModel> {
-        return this.httpClient.post<CustomerModel>(`${this.CUSTOMERS_URL}/${customer.id}`, customer);
+        return this.httpClient.post<CustomerModel>(`${this.CUSTOMERS_URL}`, customer);
     }
 
     update(customer: CustomerModel) : Observable<CustomerModel> {

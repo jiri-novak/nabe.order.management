@@ -22,8 +22,13 @@ namespace nabe.order.management.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Company>()
-                .OwnsOne(c => c.Address);
+            modelBuilder.Entity<Company>(x => {
+                x.OwnsOne(c => c.Address);
+            });
+
+            modelBuilder.Entity<Customer>(x => {
+                x.HasOne(c => c.Company);
+            });
         }
 
         public DbSet<Company> Companies { get; set; }

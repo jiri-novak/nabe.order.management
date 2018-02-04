@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using nabe.order.management.DAL;
@@ -25,7 +23,7 @@ namespace nabe.order.management.Controllers.Api
         [HttpGet]
         public IEnumerable<Customer> GetCustomers()
         {
-            return _context.Customers.Include(x => x.Company).Include(x => x.Company.Address);
+            return _context.Customers.Include(x => x.Company).Include(x => x.Company.Address).OrderBy(x => x.Name.ToLowerInvariant());
         }
 
         // GET: api/Customers/5
@@ -91,7 +89,9 @@ namespace nabe.order.management.Controllers.Api
                 return BadRequest(ModelState);
             }
 
+            _context.Attach(customer.Company);
             _context.Customers.Add(customer);
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);

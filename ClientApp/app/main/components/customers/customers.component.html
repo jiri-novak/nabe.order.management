@@ -1,5 +1,5 @@
-<div class="text-right" style="padding-top: 15px">
-    <button type="button" class="btn btn-success btn-circle btn-lg">
+<div class="text-left" style="padding-top: 15px">
+    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
         <i class="glyphicon glyphicon-plus"></i>
     </button>
 </div>
@@ -16,8 +16,9 @@
 
             <td width="200">
                 <span *ngIf="!row.isEdit" class="font-small">{{row.company.name}}</span>
-                <ng-select *ngIf="row.isEdit" [options]="companies" [(ngModel)]="row.company.id" [allowClear]="false">
-                </ng-select>
+                <select class="form-control" *ngIf="row.isEdit" [(ngModel)]="row.company" [compareWith]="compareCompaniesById">
+                    <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
+                </select>
             </td>
 
             <td>

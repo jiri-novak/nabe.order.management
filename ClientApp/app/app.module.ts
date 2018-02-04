@@ -5,16 +5,15 @@ import { APP_INITIALIZER, ApplicationRef, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { createNewHosts, removeNgStyles } from '@angularclass/hmr'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // third-party libraries
 import { ToasterModule } from 'angular2-toaster'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AlertModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TableModule } from 'ngx-easy-table';
-import { SelectModule } from 'ng-select';
 
 // infrastructure app
 import { NabeMainModule } from './main'
@@ -36,13 +35,12 @@ export function createTranslateLoader(http: HttpClient) {
         CommonModule,
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
         RoutesConfig,
         BrowserModule,
         BrowserAnimationsModule,
-        AlertModule.forRoot(),
-
+        ModalModule.forRoot(),
         TableModule,
-        SelectModule,
         ToasterModule,
         FlexLayoutModule,
         TranslateModule.forRoot({
@@ -52,7 +50,6 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-
         NabeMainModule
     ],
     providers: [

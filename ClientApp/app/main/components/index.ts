@@ -1,5 +1,5 @@
 export * from './navmenu/navmenu.component'
 export * from './invoices/invoices.component'
-export * from './invoices-dialog/invoices-dialog.component'
 export * from './customers/customers.component'
+export * from './customers-modal/customers.modal.component'
 export * from './companies/companies.component'

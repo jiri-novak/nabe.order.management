@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
@@ -13,14 +13,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import * as fromComponents from './components';
 import { CustomersService } from './services/customer.service';
-import { SelectModule } from 'ng-select';
 import { DialogService } from './services/dialog.service';
 
 const declarations = [
     fromComponents.NavMenuComponent,
     fromComponents.InvoicesComponent,
-    //fromComponents.InvoicesDialogComponent,
     fromComponents.CustomersComponent,
+    fromComponents.CustomersModalComponent,
     fromComponents.CompaniesComponent
 ];
 
@@ -30,12 +29,12 @@ const declarations = [
         CommonModule,
         HttpModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
 
         FlexLayoutModule,
         TableModule,
         BusyModule,
-        SelectModule,
         ModalModule.forRoot()
     ],
     exports: declarations,
@@ -43,6 +42,9 @@ const declarations = [
         CompaniesService,
         CustomersService,
         DialogService
+    ],
+    entryComponents: [
+        fromComponents.CustomersModalComponent
     ]
 })
 export class NabeMainModule {

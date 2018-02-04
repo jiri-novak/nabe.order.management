@@ -5,7 +5,6 @@ import { Config } from 'ngx-easy-table/src/app/ngx-easy-table/model/config';
 import { Observable } from 'rxjs/Observable';
 import { CompaniesService } from '../../services/companies.service';
 import { CompanyModel } from '../../models/company.model';
-import { ComboboxItem } from '../../models/combobox.item';
 import { CustomerModel } from '../../models/customer.model';
 
 @Component({
