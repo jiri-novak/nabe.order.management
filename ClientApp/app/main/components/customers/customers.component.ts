@@ -45,7 +45,9 @@ export class CustomersComponent implements OnInit, OnDestroy {
         serverPagination: false,
         isLoading: false,
         detailsTemplate: false,
-        groupRows: false
+        groupRows: false,
+        checkboxes: false,
+        collapseAllRows: false
     };
 
     columns = [

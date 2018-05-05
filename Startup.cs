@@ -48,8 +48,9 @@ namespace nabe_order_management
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseStaticFiles();
             app.InitializeDb();
+
+            app.UseStaticFiles();
 
             if (env.IsDevelopment())
             {
@@ -58,7 +59,7 @@ namespace nabe_order_management
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
-				    HotModuleReplacementEndpoint = "/__webpack_hmr"
+                    //HotModuleReplacementEndpoint = "dist/__webpack_hmr"
                 });
 
                 app.UseSwagger();
@@ -77,13 +78,13 @@ namespace nabe_order_management
             }
             else
             {
+                app.UseExceptionHandler("/Home/Error");
+
                 app.UseMvc(routes =>
                 {
                     routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                     routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Home", action = "Index" });
                 });
-
-                app.UseExceptionHandler("/Home/Error");
             }
         }
     }

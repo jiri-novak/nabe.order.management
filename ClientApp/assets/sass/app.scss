@@ -3,13 +3,13 @@
 @import "_buttons";
 $icon-font-path: "/assets/fonts/";
 $fa-font-path: "/assets/fonts/";
-@import '~font-awesome/scss/font-awesome.scss';
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-@import "~ngx-easy-table/spectre";
-@import "~ngx-easy-table/spectre-icons";
-@import '../../../node_modules/angular2-toaster/toaster';
-@import '../../../node_modules/angular2-busy/build/style/busy';
-@import '../../../node_modules/sweetalert2/dist/sweetalert2';
+@import '~font-awesome/scss/font-awesome';
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
+@import url("~ngx-easy-table/spectre");
+@import url("~ngx-easy-table/spectre-icons");
+@import url('../../../node_modules/angular2-toaster/toaster');
+@import url('../../../node_modules/angular2-busy/build/style/busy');
+@import url('../../../node_modules/sweetalert2/dist/sweetalert2');
 .ng-valid[required],
 .ng-valid.required {
     border-left: 5px solid #42A948;

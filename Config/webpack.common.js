@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 var helpers = require('./helpers');
 
 // paths determine
@@ -75,23 +76,20 @@ module.exports = {
     },
 
     plugins: [
-
-        new CopyWebpackPlugin([{
-            from: `ClientApp/assets/images`,
-            to: 'assets/images'
-        },
-        {
-            from: `ClientApp/assets/icons`,
-            to: 'assets/icons'
-        },
-        {
-            from: `ClientApp/assets/i18n`,
-            to: 'assets/icons'
-        },
-        {
-            from: `ClientApp/assets/fonts`,
-            to: 'assets/fonts'
-        }]),
+        new CheckerPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: `ClientApp/assets/icons`,
+                to: 'assets/icons'
+            },
+            {
+                from: `ClientApp/assets/i18n`,
+                to: 'assets/icons'
+            },
+            {
+                from: `ClientApp/assets/fonts`,
+                to: 'assets/fonts'
+            }]),
 
         new webpack.ProvidePlugin({
             jQuery: 'jquery',

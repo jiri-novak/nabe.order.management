@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { CompaniesService } from './services/companies.service';
 import { TableModule } from 'ngx-easy-table';
 import { BusyModule } from 'angular2-busy';
@@ -40,7 +39,6 @@ const providers = [
         ReactiveFormsModule,
         RouterModule,
 
-        FlexLayoutModule,
         TableModule,
         BusyModule,
         ModalModule.forRoot(),
