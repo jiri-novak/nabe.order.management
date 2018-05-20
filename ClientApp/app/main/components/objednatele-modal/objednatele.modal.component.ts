@@ -5,11 +5,11 @@ import { CompanyModel } from '../../models/company.model';
 import { AddressModel } from '../../models/address.model';
 
 @Component({
-    selector: 'companies-modal',
-    templateUrl: './companies.modal.component.html',
-    styleUrls: ['./companies.modal.component.scss']
+    selector: 'objednatele-modal',
+    templateUrl: './objednatele.modal.component.html',
+    styleUrls: ['./objednatele.modal.component.scss']
 })
-export class CompaniesModalComponent {
+export class ObjednateleModalComponent {
     model: CompanyModel;
     submitted: boolean = false;
 

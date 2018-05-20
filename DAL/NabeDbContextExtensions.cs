@@ -94,7 +94,7 @@ namespace nabe.order.management.DAL
                                     new BillOfDelivery { Code = "20171001" }
                                 },
                         },
-                        LaserProgram = Enums.LaserProgram.Partly,
+                        LaserProgram = LaserProgram.Partly,
                         SentForManufacturing = false,
                         ExternalDeliveries = new List<ExternalDelivery>()
                         {
@@ -115,7 +115,7 @@ namespace nabe.order.management.DAL
                                             },
                                         },
                                     Description = "je třeba ohnout trubku",
-                                    State = Enums.State.NotReady
+                                    State = State.NotReady
                                 }
                             }
                         },

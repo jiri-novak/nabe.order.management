@@ -8,26 +8,65 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Sledování zakázek</a>
+            <!-- <a class="navbar-brand" href="#">Sledování zakázek</a> -->
         </div>
 
         <div id="navbar" class="navbar-collapse collapse" [collapse]="isCollapsed">
             <ul class="nav navbar-nav">
+
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/orders']">
-                        <span class='glyphicon glyphicon-th-list'></span> Zakázky
+                    <a [routerLink]="['/nastenka']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Nástěnka
+                    </a>
+                </li>
+
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/zakazky']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Všechny zakázky
                     </a>
                 </li>
 
                 <li>
-                    <a [routerLink]="['/customers']">
-                        <span class='glyphicon glyphicon-user'></span> Dodavatelé
+                    <a [routerLink]="['/poptavky-nabidky']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Poptávky a nabídky
                     </a>
                 </li>
 
                 <li>
-                    <a [routerLink]="['/companies']">
-                        <span class='glyphicon glyphicon-home'></span> <b>Firmy</b>
+                    <a [routerLink]="['/objednavky-laser']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Nezpracované objednávky pro laser
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="['/objednavky-laser']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Blížící se data dodání
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="['/nevyfakturovane-objednavky']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Nevyfakturované objednávky
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="['/objednavky-chybejici-dodaci-listy']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Chybějící dodací listy
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="['/objednatele']">
+                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        Objednatelé
                     </a>
                 </li>
             </ul>

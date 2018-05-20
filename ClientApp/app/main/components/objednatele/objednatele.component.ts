@@ -9,15 +9,15 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToasterService, Toast } from 'angular2-toaster';
 import { DialogService } from '../../services/dialog.service';
-import { CompaniesModalComponent } from '../companies-modal/companies.modal.component';
+import { ObjednateleModalComponent } from '../objednatele-modal/objednatele.modal.component';
 import * as _ from 'lodash';
 
 @Component({
-    selector: 'companies',
-    templateUrl: './companies.component.html',
-    styleUrls: ['./companies.component.scss']
+    selector: 'objednatele',
+    templateUrl: './objednatele.component.html',
+    styleUrls: ['./objednatele.component.scss']
 })
-export class CompaniesComponent implements OnInit, OnDestroy {
+export class ObjednateleComponent implements OnInit, OnDestroy {
     companies: CompanyModel[];
     bsModalRef: BsModalRef;
     subscriptions: Array<Subscription> = new Array<Subscription>();
@@ -90,7 +90,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
     }
 
     openModal() {
-        this.bsModalRef = this.modalService.show(CompaniesModalComponent);
+        this.bsModalRef = this.modalService.show(ObjednateleModalComponent);
     }
 
     editRow(row: CompanyModel) {

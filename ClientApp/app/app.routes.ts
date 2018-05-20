@@ -4,16 +4,18 @@ import { AppComponent } from './app.component';
 
 import { 
     NavMenuComponent, 
-    OrdersComponent, 
+    ZakazkyComponent, 
     CustomersComponent,
-    CompaniesComponent
+    ObjednateleComponent,
+    NastenkaComponent
 } from './main/components/index';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'orders', pathMatch: 'full' },
-    { path: 'orders', component: OrdersComponent },
+    { path: '', redirectTo: 'nastenka', pathMatch: 'full' },
+    { path: 'nastenka', component: NastenkaComponent },
+    { path: 'zakazky', component: ZakazkyComponent },
     { path: 'customers', component: CustomersComponent },
-    { path: 'companies', component: CompaniesComponent },
+    { path: 'objednatele', component: ObjednateleComponent },
     { path: '**', redirectTo: 'orders' }
 ];
 

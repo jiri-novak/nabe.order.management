@@ -1,5 +1,4 @@
-﻿using nabe.order.management.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace nabe.order.management.DAL.Entities

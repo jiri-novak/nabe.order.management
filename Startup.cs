@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using nabe.order.management.DAL;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection;
 using System;
 using Swashbuckle.AspNetCore.Swagger;
@@ -39,6 +38,7 @@ namespace nabe_order_management
 
             services.AddSwaggerGen(c =>
             {
+                c.DescribeAllEnumsAsStrings();
                 c.SwaggerDoc("v1", new Info { Title = "nabe.order.management.api", Version = "v1" });
             });
         }
@@ -59,7 +59,6 @@ namespace nabe_order_management
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true,
-                    //HotModuleReplacementEndpoint = "dist/__webpack_hmr"
                 });
 
                 app.UseSwagger();

@@ -16,11 +16,12 @@ import * as fromServices from './services';
 
 const declarations = [
     fromComponents.NavMenuComponent,
-    fromComponents.OrdersComponent,
+    fromComponents.ZakazkyComponent,
     fromComponents.CustomersComponent,
     fromComponents.CustomersModalComponent,
-    fromComponents.CompaniesComponent,
-    fromComponents.CompaniesModalComponent
+    fromComponents.ObjednateleComponent,
+    fromComponents.ObjednateleModalComponent,
+    fromComponents.NastenkaComponent
 ];
 
 const providers = [
@@ -48,7 +49,7 @@ const providers = [
     providers: providers,
     entryComponents: [
         fromComponents.CustomersModalComponent,
-        fromComponents.CompaniesModalComponent
+        fromComponents.ObjednateleModalComponent
     ]
 })
 export class NabeMainModule {

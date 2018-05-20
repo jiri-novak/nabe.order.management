@@ -1,4 +1,4 @@
-﻿namespace nabe.order.management.Enums
+﻿namespace nabe.order.management.DAL.Entities
 {
     public enum LaserProgram
     {

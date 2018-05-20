@@ -14,11 +14,11 @@ import { DialogService } from '../../services/dialog.service';
 import { CustomersService } from '../../services/customer.service';
 
 @Component({
-    selector: 'orders',
-    templateUrl: './orders.component.html',
-    styleUrls: ['./orders.component.scss']
+    selector: 'zakazky',
+    templateUrl: './zakazky.component.html',
+    styleUrls: ['./zakazky.component.scss']
 })
-export class OrdersComponent implements OnInit, OnDestroy {
+export class ZakazkyComponent implements OnInit, OnDestroy {
     orders: Array<OrderModel> = new Array<OrderModel>();
     bsModalRef: BsModalRef;
     subscriptions: Array<Subscription> = new Array<Subscription>();
