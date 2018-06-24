@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace nabe.order.management.Model
+namespace nabe.order.management.Model.Zaznamy
 {
     public abstract class Zaznam
     {

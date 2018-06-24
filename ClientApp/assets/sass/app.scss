@@ -4,10 +4,9 @@
 $icon-font-path: "/assets/fonts/";
 $fa-font-path: "/assets/fonts/";
 
-@import '~font-awesome/scss/font-awesome';
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
-@import "~ngx-easy-table/spectre";
-@import "~ngx-easy-table/spectre-icons";
+//@import '../../../node_modules/npfont-awesome/scss/font-awesome';
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
+@import "../../../node_modules/ngx-easy-table/spectre";
 @import '../../../node_modules/angular2-toaster/toaster';
 @import '../../../node_modules/angular2-busy/build/style/busy';
 @import '../../../node_modules/sweetalert2/dist/sweetalert2';

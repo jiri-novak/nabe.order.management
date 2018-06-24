@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace nabe.order.management.Model
+namespace nabe.order.management.Model.Zaznamy
 {
     public class Objednavka : Zaznam
     {
-        public int CisloObjednavky { get; set; }
+        public Objednavka()
+        {
+            Typ = Typ.Objednavka;
+        }
+
+        public string CisloObjednavky { get; set; }
 
         public DateTime DatumDodani { get; set; }
 

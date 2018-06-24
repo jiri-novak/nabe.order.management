@@ -1,76 +1,102 @@
-li {
-    .glyphicon {
-        margin-right: 10px;
-    }
-
-    &.link-active a {
-        background-color: #4189C7;
-        color: white;
-
-        &:hover, &:focus {
-            background-color: #4189C7;
-            color: white;
-        }
-    }
-}
-
-/* Highlighting rules for nav menu items */
-
-/* Keep the nav menu independent of scrolling and on top of other items */
-
-.main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-}
-
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        //max-width: 350px;
-        width: calc(23% - 20px);
-    }
-
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-
-    .navbar-header {
-        float: none;
-    }
-
-    .navbar-collapse {
-        border-top: 1px solid #444;
+@import '../../../../assets/sass/_variables';
+header[role="banner"] {
+    margin-top: 0px;
+    hr.delimiter {
+        background-color: $color-green;
+        margin: 0px;
         padding: 0px;
+        border: 0px;
+        height: 2px;
     }
-
-    .navbar {
-        ul {
-            float: none;
+    $default-background: transparent;
+    $default-color: $color-black;
+    $hover-background: $color-darkgrey;
+    $hover-color: $color-white;
+    $active-background: $color-green;
+    $active-color: $color-white;
+    $border-color: transparent;
+    .navbar-default {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        background-color: $default-background;
+        border-color: $border-color;
+        .navbar-text {
+            color: $default-color;
         }
-
-        li {
-            float: none;
-            font-size: 15px;
-            margin: 6px;
-
-            a {
-                padding: 10px 16px;
-                border-radius: 4px;
+        .navbar-nav {
+            @media (min-width: 767px) {
+                margin-left: -30px;
+            }
+            >li {
+                >a {
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                    color: $default-color;
+                    &:hover,
+                    &:focus {
+                        color: $hover-color;
+                        background-color: $hover-background;
+                    }
+                }
+            }
+            >.active {
+                >a,
+                >a:hover,
+                >a:focus {
+                    color: $active-color;
+                    background-color: $active-background;
+                }
+            }
+            >.open {
+                >a,
+                >a:hover,
+                >a:focus {
+                    color: $hover-color;
+                    background-color: $hover-background;
+                }
             }
         }
-
-        a {
-            /* If a menu item's text is too long, truncate it */
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .navbar-toggle {
+            border-color: $border-color;
+            &:hover,
+            &:focus {
+                color: $hover-color;
+                background-color: $hover-background;
+            }
+            .icon-bar {
+                background-color: $default-color;
+            }
+        }
+        .navbar-collapse,
+        .navbar-form {
+            border-color: $default-color;
+        }
+        .navbar-link {
+            color: $default-color;
+            &:hover {
+                color: $hover-color;
+                background-color: $hover-background;
+            }
+        }
+    }
+    @media (max-width: 767px) {
+        .navbar-default .navbar-nav .open .dropdown-menu {
+            >li>a {
+                color: $default-color;
+                &:hover,
+                &:focus {
+                    color: $hover-color;
+                    background-color: $hover-background;
+                }
+            }
+            >.active {
+                >a,
+                >a:hover,
+                >a:focus {
+                    color: $active-color;
+                    background-color: $active-background;
+                }
+            }
         }
     }
 }

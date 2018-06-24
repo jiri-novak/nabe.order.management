@@ -1,0 +1,77 @@
+<div class="col-lg-12">
+    <button type="button" class="btn btn-success btn-circle" (click)="openModal()">
+        <i class="glyphicon glyphicon-plus"></i>
+    </button>
+</div>
+
+<div class="col-lg-12" style="height: 40vh;">
+    <ngx-table [configuration]="configuration" [data]="zaznamy" [columns]="columns" (event)="eventEmitted($event)" [detailsTemplate]="detailsTemplateRef"
+        [ngBusy]="busy">
+
+        <ng-template let-row>
+            <td>
+                <div>{{row.typ | typToString}}</div>
+            </td>
+
+            <td>
+                <div>{{row.stav | stavToString}}</div>
+            </td>
+
+            <td>
+                <div>{{row.cislo}}</div>
+            </td>
+
+            <td>
+                <div>{{row.datum | date: 'dd.MM.yyyy'}}</div>
+            </td>
+
+            <td>
+                <div>{{row.jmeno}}</div>
+            </td>
+
+            <td>
+                <div>{{row.objednatelJmeno}}</div>
+            </td>
+
+            <td>
+                <div>{{row.popis}}</div>
+            </td>
+
+            <td>
+                <div>{{row.poznamka}}</div>
+            </td>
+        </ng-template>
+
+        <ng-template #detailsTemplate let-row>
+            <div>
+            </div>
+        </ng-template>
+
+    </ngx-table>
+</div>
+
+<div class="col-lg-12">
+    <div class="panel panel-primary" *ngIf="selectedRow">
+        <div class="panel-heading">Zakázka č: {{selectedRow.code}}</div>
+        <div class="panel-body">
+            <div>
+                <button *ngIf="!selectedRow.isEdit" class="btn btn-primary btn-sm" (click)=editRow(selectedRow)>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="selectedRow.isEdit" class="btn btn-success btn-sm" (click)=confirmRow(selectedRow)>
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="!selectedRow.isEdit" class="btn btn-danger btn-sm" (click)=deleteRow(selectedRow)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+                <button *ngIf="selectedRow.isEdit" class="btn btn-warning btn-sm" (click)=cancelEditRow(selectedRow)>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="form-group">
+                {{selectedRow.description}}
+            </div>
+
+        </div>
+    </div>
+</div>

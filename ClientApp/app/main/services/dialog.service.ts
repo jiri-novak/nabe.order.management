@@ -7,12 +7,12 @@ export class DialogService {
         return swal({
             title: title,
             text: message,
-            type: 'warning',
+            type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: okText || 'Ok',
-            cancelButtonText: cancelText || 'Zrušit',
+            confirmButtonText: okText || 'Ano',
+            cancelButtonText: cancelText || 'Ne',
             confirmButtonClass: 'btn btn-primary',
             cancelButtonClass: 'btn btn-default m-l-10',
             buttonsStyling: false

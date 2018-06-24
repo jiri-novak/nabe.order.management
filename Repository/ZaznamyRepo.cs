@@ -1,4 +1,5 @@
 ﻿using nabe.order.management.Model;
+using nabe.order.management.Model.Zaznamy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,7 @@ namespace nabe.order.management.Repository
                     ObjednatelJmeno = "EYELEVEL s r.o",
                     Popis = "popis",
                     Poznamka = "poznamka",
-                    Stav = Stav.Prijato,
-                    Typ = Typ.Poptavka
+                    Stav = Stav.Prijato
                 }
             };
         }

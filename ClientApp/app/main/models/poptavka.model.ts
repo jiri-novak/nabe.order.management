@@ -1,4 +1,4 @@
-import { Zaznam } from "./zaznam.model";
+import { ZaznamModel } from "./zaznam.model";
 
-export class Poptavka extends Zaznam {
+export class PoptavkaModel extends ZaznamModel {
 }

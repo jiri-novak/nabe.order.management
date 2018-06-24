@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { CompanyModel } from '../../models/company.model';
 import { AddressModel } from '../../models/address.model';
@@ -13,7 +12,7 @@ export class ObjednateleModalComponent {
     model: CompanyModel;
     submitted: boolean = false;
 
-    constructor(public fb: FormBuilder, public bsModalRef: BsModalRef) {
+    constructor(private bsModalRef: BsModalRef) {
         this.model = new CompanyModel();
         this.model.address = new AddressModel();
     }

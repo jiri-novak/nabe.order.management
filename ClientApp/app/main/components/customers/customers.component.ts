@@ -36,7 +36,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
         paginationEnabled: true,
         paginationRangeEnabled: true,
         exportEnabled: false,
-        clickEvent: false,
+        clickEvent: true,
         selectRow: false,
         selectCol: false,
         selectCell: false,
@@ -47,7 +47,17 @@ export class CustomersComponent implements OnInit, OnDestroy {
         detailsTemplate: false,
         groupRows: false,
         checkboxes: false,
-        collapseAllRows: false
+        collapseAllRows: false,
+        fixedColumnWidth: false,
+        horizontalScroll: false,
+        resizeColumn: true,
+        tableLayout: {
+            style: 'normal',
+            theme: 'normal',
+            borderless: false,
+            hover: true,
+            striped: true
+        }
     };
 
     columns = [
@@ -55,12 +65,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
         { key: 'name', title: 'Jméno' },
         { key: 'company', title: 'Společnost' }
     ];
-
-    pagination = {
-        limit: 20,
-        offset: 0,
-        count: null,
-    };
 
     constructor(
         private customersService: CustomersService,

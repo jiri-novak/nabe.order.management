@@ -6,7 +6,10 @@ export class CompanyModel {
     address: AddressModel;
     dic: string;
     ico: number;
-    isEdit: boolean;
+
+    constructor() {
+        this.address = new AddressModel();
+    }
 
     static fromServerResponse(response: any): CompanyModel {
         if (!response)
