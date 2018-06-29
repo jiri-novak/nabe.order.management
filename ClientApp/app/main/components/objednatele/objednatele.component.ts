@@ -96,6 +96,7 @@ export class ObjednateleComponent implements OnInit, OnDestroy {
 
                 this.companies.push(result);
                 this.companies = this.sortByName(this.companies);
+                this.selectedRow = result;
             },
             error => {
                 let toast: Toast = { type: 'error', title: `Chyba při vytváření objednatele: ${error.message}` };
@@ -128,11 +129,13 @@ export class ObjednateleComponent implements OnInit, OnDestroy {
             value => {
                 let toast: Toast = { type: 'success', title: 'Objednatel úspěšně odstraněn' };
                 this.companies = this.companies.filter(r => r.id != row.id);
+                this.selectedRow = null;
                 this.toasterService.pop(toast);
             },
             error => {
                 let toast: Toast = { type: 'error', title: `Chyba při odstraňování objednatele: ${error.message}` };
                 this.toasterService.pop(toast);
+                this.selectedRow = null;
             }
         );
     }
